@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import TitleBar from './TitleBar/titleBar';
 import Footer from './Footer/footer';
+import APIConnect from './APIConnect/APIConnect';
 
 class App extends Component {
 	constructor(props) {
@@ -12,6 +13,7 @@ class App extends Component {
 		return (
 			<div className="container-fluid">
 				<TitleBar />
+					<APIConnect />
 				<Footer />
 			</div>
 		)
