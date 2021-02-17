@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 const $ = require( "jquery" )
 
-class ConnectToAPI extends Component {
+class APIConnect extends Component {
 	constructor(props) {
 		super(props);
 		this.muic=[];
@@ -26,4 +26,4 @@ class ConnectToAPI extends Component {
 	}
 }
 
-export default ConnectToAPI;
+export default APIConnect;
