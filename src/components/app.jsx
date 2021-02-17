@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import TitleBar from './TitleBar/titlebar';
+import TitleBar from './TitleBar/titleBar';
+import Footer from './Footer/footer';
 
 class App extends Component {
 	constructor(props) {
@@ -11,7 +12,10 @@ class App extends Component {
 		return (
 			<div className="container-fluid">
 				<TitleBar />
+				<Footer />
 			</div>
 		)
 	}
 }
+
+export default App;
