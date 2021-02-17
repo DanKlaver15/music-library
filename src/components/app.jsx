@@ -9,10 +9,12 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 		this.music = [];
+		this.state = {
+			songNumber: 0
+		}
 	}
 
 	getMusic() {
-		var music = [];
 		var settings = {
 			"url": "http://www.devcodecampmusiclibrary.com/api/music",
 			"method": "GET",
@@ -20,7 +22,7 @@ class App extends Component {
 			};
 		$.ajax(settings).done(function (response) {
 			console.log(response);
-			music.push(response);
+			this.music.push(response);
 		});
 	}
 
