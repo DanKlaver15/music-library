@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import TitleBar from './TitleBar/titleBar';
 import Footer from './Footer/footer';
-import APIConnect from './APIConnect/APIConnect';
+import DisplayMusic from './DisplayMusic/displayMusic';
+const $ = require("jquery");
+
 
 class App extends Component {
 	constructor(props) {
@@ -9,11 +11,24 @@ class App extends Component {
 		this.music = [];
 	}
 
+	getMusic() {
+		var music = [];
+		var settings = {
+			"url": "http://www.devcodecampmusiclibrary.com/api/music",
+			"method": "GET",
+			"timeout": 0,
+			};
+		$.ajax(settings).done(function (response) {
+			console.log(response);
+			music.push(response);
+		});
+	}
+
 	render() {
 		return (
 			<div className="container-fluid">
 				<TitleBar />
-					<APIConnect />
+					<DisplayMusic />
 				<Footer />
 			</div>
 		)
