@@ -27,7 +27,6 @@ class App extends Component {
 			this.state.dataReady ? 
 			<div className="container-fluid">
 				<TitleBar />
-					{/* <h1>{this.state.music[2].title}</h1> */}
 					<BuildTable music={this.state.music}/>
 				<Footer />
 			</div>
