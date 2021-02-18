@@ -33,9 +33,9 @@ function BuildTable(props) {
 					{RenderTableHeader(props.music)}
 				</tr>
 			</thead>
-			<body>
+			<tbody>
 				{RenderTableData(props.music)}
-			</body>
+			</tbody>
 		</table>
 	)
 }
