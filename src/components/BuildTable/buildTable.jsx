@@ -1,4 +1,5 @@
 import React from 'react';
+import Table from 'react-bootstrap/Table'
 import './buildTable.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -27,7 +28,7 @@ function RenderTableHeader(props) {
 
 function BuildTable(props) {
 	return (
-		<table className="table">
+		<Table striped bordered hover variant="dark">
 			<thead>
 				<tr>
 					{RenderTableHeader(props.music)}
@@ -36,7 +37,7 @@ function BuildTable(props) {
 			<tbody>
 				{RenderTableData(props.music)}
 			</tbody>
-		</table>
+		</Table>
 	)
 }
 
