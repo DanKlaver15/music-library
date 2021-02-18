@@ -1,38 +1,37 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import TitleBar from './TitleBar/titleBar';
 import Footer from './Footer/footer';
-import DisplayMusic from './DisplayMusic/displayMusic';
+import BuildTable from './BuildTable/buildTable';
+import './app.css';
 const $ = require("jquery");
 
 
 class App extends Component {
 	constructor(props) {
 		super(props);
-		this.music = [];
 		this.state = {
-			songNumber: 0
+			music: [],
+			dataReady: false
 		}
 	}
 
-	getMusic() {
-		var settings = {
-			"url": "http://www.devcodecampmusiclibrary.com/api/music",
-			"method": "GET",
-			"timeout": 0,
-			};
-		$.ajax(settings).done(function (response) {
-			console.log(response);
-			this.music.push(response);
-		});
-	}
+	componentDidMount() {
+		axios.get('http://www.devcodecampmusiclibrary.com/api/music').then(data =>
+		this.setState({ music: data.data,
+		dataReady: true})
+		)}
 
 	render() {
 		return (
+			this.state.dataReady ? 
 			<div className="container-fluid">
 				<TitleBar />
-					<DisplayMusic />
+					{/* <h1>{this.state.music[2].title}</h1> */}
+					<BuildTable music={this.state.music}/>
 				<Footer />
 			</div>
+			: null
 		)
 	}
 }
