@@ -3,6 +3,7 @@ import axios from 'axios';
 import TitleBar from './TitleBar/titleBar';
 import Footer from './Footer/footer';
 import BuildTable from './BuildTable/buildTable';
+import SearchBar from './SearchBar/searchBar';
 import './app.css';
 const $ = require("jquery");
 
@@ -27,7 +28,8 @@ class App extends Component {
 			this.state.dataReady ? 
 			<div className="container-fluid">
 				<TitleBar />
-					<BuildTable music={this.state.music}/>
+				<SearchBar />
+				<BuildTable music={this.state.music}/>
 				<Footer />
 			</div>
 			: null
