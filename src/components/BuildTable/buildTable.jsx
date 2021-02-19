@@ -1,44 +1,28 @@
 import React from 'react';
-import Table from 'react-bootstrap/Table'
+import { AgGridColumn, AgGridReact } from 'ag-grid-react';
+import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
 import './buildTable.css';
-import 'bootstrap/dist/css/bootstrap.css';
 
-function RenderTableData(props) {
-	return props.map((song, index) => {
-		const { id, title, album, artist, genre, releaseDate } = song
-		return (
-			<tr key={id}>
-				<td>{id}</td>
-				<td>{title}</td>
-				<td>{album}</td>
-				<td>{artist}</td>
-				<td>{genre}</td>
-				<td>{releaseDate}</td>
-			</tr>
-		)
-	})
-}
-
-function RenderTableHeader(props) {
+function RenderColumns(props) {
 	let header = Object.keys(props[0])
+	header.shift()
       return header.map((key, index) => {
-         return <th key={index}>{key.toUpperCase()}</th>
+         return (		
+				<AgGridColumn key={index} field={key} sortable={true} floatingFilter={true} filter='agTextColumnFilter' suppressMenu={true} flex={1} ></AgGridColumn>
+			)
       })
 }
 
-function BuildTable(props) {
+function renderTable(props) {
 	return (
-		<Table striped bordered hover variant="dark">
-			<thead>
-				<tr>
-					{RenderTableHeader(props.music)}
-				</tr>
-			</thead>
-			<tbody>
-				{RenderTableData(props.music)}
-			</tbody>
-		</Table>
+		<div className="ag-theme-alpine-dark">
+			<AgGridReact rowData={props.music}>
+				<AgGridColumn headerName='ID' field='id' sortable={true} width={75} ></AgGridColumn>
+				{RenderColumns(props.music)}
+			</AgGridReact>
+		</div>
 	)
 }
 
-export default BuildTable;
+export default renderTable; 
