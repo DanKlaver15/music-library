@@ -2,11 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import TitleBar from './TitleBar/titleBar';
 import Footer from './Footer/footer';
-import BuildTable from './BuildTable/buildTable';
-import SearchBar from './SearchBar/searchBar';
-import './app.css';
-const $ = require("jquery");
+import RenderTable from './BuildTable/buildTable';
 
+import './app.css';
 
 class App extends Component {
 	constructor(props) {
@@ -26,12 +24,11 @@ class App extends Component {
 	render() {
 		return (
 			this.state.dataReady ? 
-			<div className="container-fluid">
-				<TitleBar />
-				<SearchBar />
-				<BuildTable music={this.state.music}/>
-				<Footer />
-			</div>
+				<div className="container-fluid">
+					<TitleBar />
+					<RenderTable music={this.state.music}/>
+					<Footer />
+				</div>
 			: null
 		)
 	}
