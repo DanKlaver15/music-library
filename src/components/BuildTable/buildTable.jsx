@@ -18,7 +18,6 @@ function renderTable(props) {
 	return (
 		<div className="ag-theme-alpine-dark">
 			<AgGridReact rowData={props.music}>
-				<AgGridColumn headerName='ID' field='id' sortable={true} width={75} ></AgGridColumn>
 				{RenderColumns(props.music)}
 			</AgGridReact>
 		</div>
