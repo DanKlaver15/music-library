@@ -17,7 +17,7 @@ function RenderColumns(props) {
 function renderTable(props) {
 	return (
 		<div className="ag-theme-alpine-dark">
-			<AgGridReact rowData={props.music}>
+			<AgGridReact rowData={props.music} animateRows={true}>
 				{RenderColumns(props.music)}
 			</AgGridReact>
 		</div>
