@@ -16,19 +16,28 @@ class App extends Component {
 		}
 	}
 
-	addNewSong (song) {
-		this.music.push(song);
-		this.setState({
-			music: this.music,
-			dataReady: true
-		})
+	getAllSongs() {
+		axios.get('http://localhost:5000/api/music')
+		.then(data =>
+			this.setState({
+				music: data.data,
+				dataReady: true
+			})
+		)
+	}
+
+	async addNewSong(song) {
+		try {
+			await axios.post('http://localhost:5000/api/music', song);
+			this.getAllSongs();
+		} catch(error) {
+			console.log("error", error);
+		}
 	}
 
 	componentDidMount() {
-		axios.get('http://localhost:5000/api/music').then(data =>
-		this.setState({ music: data.data,
-		dataReady: true})
-		)}
+		this.getAllSongs()
+	}
 
 	render() {
 		return (
