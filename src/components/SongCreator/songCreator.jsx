@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './songCreator.css';
 
 class SongCreator extends Component { 
@@ -24,19 +23,14 @@ class SongCreator extends Component {
 
   	handleSubmit(event) {
 		event.preventDefault();
-		axios.post('http://localhost:5000/api/music', {
+		const song = {
 			title: this.state.title,
 			album: this.state.album,
 			artist: this.state.artist,
 			genre: this.state.genre,
-			releaseDate: this.state.releaseDate,
-		})
-		.then(function (response) {
-			console.log(response);
-		})
-		.catch(function (error) {
-			console.log(error);
-		});
+			releaseDate: this.state.releaseDate
+		}
+		this.props.addNewSong(song);
 		this.setState({
 			title: '',
 			album: '',
@@ -51,7 +45,7 @@ class SongCreator extends Component {
 			<div>
 				<hr />
 				<center>
-					<h3>Add a new song!</h3>
+					<h3>Add a new song</h3>
 				</center>
 				<form onSubmit={this.handleSubmit}>
 					<div className="row col-align">
