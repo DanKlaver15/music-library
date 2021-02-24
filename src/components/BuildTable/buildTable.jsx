@@ -8,9 +8,14 @@ function RenderColumns(props) {
 	let header = Object.keys(props[0])
 	header.shift();
       return header.map((key, index) => {
-         return (		
-				<AgGridColumn key={index} field={key} sortable={true} floatingFilter={true} filter='agTextColumnFilter' suppressMenu={true} flex={1} ></AgGridColumn>
-			)
+			if (index === 0) {
+				return (
+					<AgGridColumn key={index} field={key} sortable={true} floatingFilter={true} filter='agTextColumnFilter' suppressMenu={true} flex={1} checkboxSelection={true}></AgGridColumn>
+				)
+			} else {
+         return (
+				<AgGridColumn key={index} field={key} sortable={true} floatingFilter={true} filter='agTextColumnFilter' suppressMenu={true} flex={1}></AgGridColumn>
+			)}
       })
 }
 
