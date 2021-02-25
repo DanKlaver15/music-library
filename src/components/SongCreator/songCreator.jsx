@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { Modal, Button, Form } from "react-bootstrap";
+import 'reactjs-popup/dist/index.css';
 import './songCreator.css';
 
 class SongCreator extends Component { 
@@ -9,10 +11,25 @@ class SongCreator extends Component {
 			album: '',
 			artist: '',
 			genre: '',
-			releaseDate: ''
+			releaseDate: '',
+			showModal: false
 		}
 		this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleShow = this.handleShow.bind(this);
+		this.handleClose = this.handleClose.bind(this);
+	}
+
+	handleShow() {
+		this.setState({
+			showModal: true
+		});
+	}
+	
+	handleClose() {
+		this.setState({
+			showModal: false
+		});
 	}
 
 	handleChange(event) {
@@ -36,51 +53,41 @@ class SongCreator extends Component {
 			album: '',
 			artist: '',
 			genre: '',
-			releaseDate: ''
+			releaseDate: '',
 		});
+		this.handleClose();
 	}
 
 	render() {
 		return (
 			<div>
-				<hr />
-				<center>
-					<h3>Add a new song</h3>
-				</center>
-				<form onSubmit={this.handleSubmit}>
-					<div className="row col-align">
-						<div className="col-md-4">
-							<label>Title:</label>
-							<input type="text" name="title" value={this.state.title}
-							onChange={this.handleChange} />
-						</div>
-						<div className="col-md-4">
-							<label>Album:</label>
-							<input type="text" name="album" value={this.state.album}
-							onChange={this.handleChange} />
-						</div>
-						<div className="col-md-4">
-							<label>Artist:</label>
-							<input type="text" name="artist" value={this.state.artist}
-							onChange={this.handleChange} />
-						</div>
-						<div className="col-md-4">
-							<label>Genre:</label>
-							<input type="text" name="genre" value={this.state.genre}
-							onChange={this.handleChange} />
-						</div>
-						<div className="col-md-4">
-							<label>Release Date:</label>
-							<input type="text" name="releaseDate" value={this.state.releaseDate}
-							onChange={this.handleChange} />
-						</div>
-						<div className="submitCol">
-							<input type="submit" value="Add" />
-						</div>
-					</div>
-				</form>
+				<br></br>
+				<div className="justify-content-center" style={{ height: "10vh" }}>
+					<Button variant="primary" onClick={this.handleShow}>Add Song</Button>
+				</div>
+				<Modal show={this.state.showModal} onHide={this.handleClose}>
+					<Modal.Header closeButton onClick={this.handleClose}>
+					</Modal.Header>
+					<Modal.Body>
+						<Form>
+							<Form.Label>Title:</Form.Label>
+							<Form.Control name="title" value={this.state.title} onChange={this.handleChange}></Form.Control>
+							<Form.Label>Album:</Form.Label>
+							<Form.Control name="album" value={this.state.album} onChange={this.handleChange}></Form.Control>
+							<Form.Label>Artist:</Form.Label>
+							<Form.Control name="artist" value={this.state.artist} onChange={this.handleChange}></Form.Control>
+							<Form.Label>Genre:</Form.Label>
+							<Form.Control name="genre" value={this.state.genre} onChange={this.handleChange}></Form.Control>
+							<Form.Label>Release Date:</Form.Label>
+							<Form.Control name="releaseDate" value={this.state.releaseDate} onChange={this.handleChange}></Form.Control>
+						</Form>
+					</Modal.Body>
+					<Modal.Footer>
+						<Button variant="secondary" onClick={this.handleSubmit}>Submit</Button>
+					</Modal.Footer>
+				</Modal>
 			</div>
-		);
+		)
 	}
 }
 
