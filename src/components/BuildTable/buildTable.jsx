@@ -6,9 +6,12 @@ import './buildTable.css';
 
 function RenderColumns(props) {
 	let header = Object.keys(props[0])
-	header.shift();
       return header.map((key, index) => {
 			if (index === 0) {
+				return (
+					<AgGridColumn key={index} field={key} hide={true}></AgGridColumn>
+				)
+			} else if (index ===1) {
 				return (
 					<AgGridColumn key={index} field={key} sortable={true} floatingFilter={true} filter='agTextColumnFilter' suppressMenu={true} flex={1} checkboxSelection={true}></AgGridColumn>
 				)
