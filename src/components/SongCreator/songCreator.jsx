@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Modal, Button, Form } from "react-bootstrap";
-import 'reactjs-popup/dist/index.css';
 import './songCreator.css';
 
 class SongCreator extends Component { 
