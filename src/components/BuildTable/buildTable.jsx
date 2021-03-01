@@ -1,35 +1,46 @@
-import React from 'react';
-import { AgGridColumn, AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-alpine-dark.css';
-import './buildTable.css';
+import React, { useState } from "react";
+import { AgGridReact, AgGridColumn } from "ag-grid-react";
+import "ag-grid-community/dist/styles/ag-grid.css";
+import "ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
 
-function RenderColumns(props) {
-	let header = Object.keys(props[0])
-      return header.map((key, index) => {
-			if (index === 0) {
-				return (
-					<AgGridColumn key={index} field={key} hide={true}></AgGridColumn>
-				)
-			} else if (index ===1) {
-				return (
-					<AgGridColumn key={index} field={key} sortable={true} floatingFilter={true} filter='agTextColumnFilter' suppressMenu={true} flex={1} checkboxSelection={true}></AgGridColumn>
-				)
-			} else {
-         return (
-				<AgGridColumn key={index} field={key} sortable={true} floatingFilter={true} filter='agTextColumnFilter' suppressMenu={true} flex={1}></AgGridColumn>
-			)}
-      })
+import RenderColumns from "../Columns/columns";
+import GridComponents from "../Editors/indexEditors";
+
+function CreateTable(props) {
+  const [gridApi, setGridApi] = useState(null);
+  const [columnApi, setColumnApi] = useState(null);
+
+  const [rowData, setRowData] = useState(null);
+
+  const frameworkComponents = {
+    simpleEditor: GridComponents.SimpleEditor,
+    actionsRenderer: GridComponents.ActionsRenderer
+  };
+
+  function onGridReady(params) {
+    setGridApi(params.api);
+    setColumnApi(params.columnApi);
+    params.api.sizeColumnsToFit();
+  }
+
+  return (
+      <div
+        id="myGrid"
+        style={{ height: "100%", width: "100%" }}
+        className="ag-theme-alpine-dark"
+      >
+        <AgGridReact
+          rowData={props.music}
+        //   getRowNodeId={data => data.id}
+          onGridReady={onGridReady}
+          frameworkComponents={frameworkComponents}
+          editType="fullRow"
+          suppressClickEdit>
+			{RenderColumns(props.music)}
+			<AgGridColumn headerName='' colId='actions' cellRenderer="actionsRenderer" editable={false} filter={false} minWidth={220}></AgGridColumn>
+		</AgGridReact>
+      </div>
+  );
 }
 
-function renderTable(props) {
-	return (
-		<div className="ag-theme-alpine-dark">
-			<AgGridReact rowData={props.music} animateRows={true}>
-				{RenderColumns(props.music)}
-			</AgGridReact>
-		</div>
-	)
-}
-
-export default renderTable; 
+export default CreateTable;
