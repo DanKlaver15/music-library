@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import TitleBar from './TitleBar/titleBar';
 import Footer from './Footer/footer';
-import RenderTable from './BuildTable/buildTable';
+import CreateTable from './BuildTable/buildTable';
 import SongCreator from './SongCreator/songCreator';
 
 import './app.css';
@@ -14,6 +14,7 @@ class App extends Component {
 			music: [],
 			dataReady: false
 		}
+		this.getAllSongs = this.getAllSongs.bind(this);
 	}
 
 	getAllSongs() {
@@ -44,7 +45,7 @@ class App extends Component {
 			this.state.dataReady ? 
 				<div className="container-fluid">
 					<TitleBar />
-					<RenderTable music={this.state.music}/>
+					<CreateTable music={this.state.music} getSongs={this.getAllSongs.bind(this)}/>
 					<SongCreator addNewSong={this.addNewSong.bind(this)}/>
 					<Footer />
 				</div>
