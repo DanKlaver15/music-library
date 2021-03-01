@@ -15,36 +15,43 @@ button[variant][color] {
 	background-color: white;
 	color: black;
 	border: 2px solid black;
+	border-radius: 4px;
  }
  
  button[variant][color]:focused {
 	outline: none;
+	border-radius: 4px;
  }
  
  button[variant][color]:disabled {
 	color: lightgrey !important;
 	border-color: lightgrey !important;
 	background: whitesmoke !important;
+	border-radius: 4px;
  }
  
  button[variant="outlined"][color="primary"] {
 	color: dodgerblue;
 	border-color: dodgerblue;
+	border-radius: 4px;
  }
  
  button[variant="contained"][color="primary"] {
 	background-color: dodgerblue;
 	border-color: dodgerblue;
 	color: white;
+	border-radius: 4px;
  }
  
  button[variant="outlined"][color="secondary"] {
 	color: #E91E63;
 	border-color: #E91E63;
+	border-radius: 4px;
  }
  
  button[variant="contained"][color="secondary"] {
 	background-color: #E91E63;
 	border-color: #E91E63;
 	color: white;
+	border-radius: 4px;
  }
