@@ -45,8 +45,8 @@ class App extends Component {
 			this.state.dataReady ? 
 				<div className="container-fluid">
 					<TitleBar />
-					<CreateTable music={this.state.music} getSongs={this.getAllSongs.bind(this)}/>
 					<SongCreator addNewSong={this.addNewSong.bind(this)}/>
+					<CreateTable music={this.state.music} getSongs={this.getAllSongs.bind(this)}/>
 					<Footer />
 				</div>
 			: null
