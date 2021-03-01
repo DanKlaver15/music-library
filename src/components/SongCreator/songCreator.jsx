@@ -62,7 +62,7 @@ class SongCreator extends Component {
 			<div>
 				<br></br>
 				<div className="justify-content-center" style={{ height: "10vh" }}>
-					<Button variant="primary" onClick={this.handleShow}>Add Song</Button>
+					<br></br><Button variant="primary" onClick={this.handleShow}>Add Song</Button>
 				</div>
 				<Modal show={this.state.showModal} onHide={this.handleClose}>
 					<Modal.Header closeButton onClick={this.handleClose}>
